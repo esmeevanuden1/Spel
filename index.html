@@ -2,7 +2,12 @@
 <style>
 table {
     border: none;
-    position: center;  
+    position: center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 td {
     width: 60px;
@@ -39,9 +44,9 @@ h3 {
 
 </style>
 
-<h1>VIER-OP-EEN-RIJ</h1>
+<h1 style="text-align:center; margin-bottom: 30px">VIER-OP-EEN-RIJ</h1>
 
-  <div style="display:flex; gap:40px; align-items:flex-start; margin-bottom: 30px;">
+  <div style="display:flex; gap:40px; align-items:flex-start; justify-content:center; margin-bottom: 30px;">
     <!-- Speler 1 -->
     <div style="text-align:center;">
       <h2>Speler 1</h2>
@@ -130,6 +135,15 @@ let currentPlayer = "red"; // afwisselende speler
 function gooiSteen(kolom) {
     const bord = document.getElementById("bord");
     const rows = bord.rows;
+
+     // Check eerst of kolom vol is
+    if (isKolomVol(kolom)) {
+        console.log("Kolom is vol!");
+        disableKolom(kolom);
+        return; 
+    }
+
+   
     
     // Loop van onder naar boven in de gekozen kolom
     for (let i = rows.length - 1; i >= 0; i--) {
@@ -140,6 +154,30 @@ function gooiSteen(kolom) {
             currentPlayer = currentPlayer === "red" ? "blue" : "red";
             break; 
         }
+    }
+
+
+  if (isKolomVol(kolom)) {
+        disableKolom(kolom);
+    }
+  }
+
+  
+  function isKolomVol(kolom) {
+    const bord = document.getElementById("bord");
+    const rows = bord.rows;
+    return rows[0].cells[kolom].style.backgroundColor !== "";
+}
+
+// kolom uitschakelen
+function disableKolom(kolom) {
+    const bord = document.getElementById("bord");
+    const rows = bord.rows;
+
+    for (let i = 0; i < rows.length; i++) {
+        const cel = rows[i].cells[kolom];
+        cel.style.pointerEvents = "none"; // klikken uitschakelen
+        cel.style.opacity = "0.6"; // visueel effect
     }
 }
 

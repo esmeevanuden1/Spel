@@ -1,0 +1,185 @@
+
+<style>
+table {
+    border: none;
+    position: center;  
+}
+td {
+    width: 60px;
+    height: 50px;
+    background-position: center;
+    border: 3px solid red
+    
+}
+
+td:hover {
+    background-color: darkgrey ;
+    
+}
+
+tr:hover {background-color: lightgrey;}
+
+h1 {
+    color: darkred
+    
+}
+
+
+h2 {
+    background-color: center;
+    color: darkred
+    
+}
+
+h3 {
+    background-color: center;
+    color: darkred
+    
+}
+
+</style>
+
+<h1>VIER-OP-EEN-RIJ</h1>
+
+  <div style="display:flex; gap:40px; align-items:flex-start; margin-bottom: 30px;">
+    <!-- Speler 1 -->
+    <div style="text-align:center;">
+      <h2>Speler 1</h2>
+      <input id="invoerveld1" placeholder="Naam speler 1">
+      <input type="button" value="OK" onclick="doen(1)">
+      <div id="uitvoerveld1"></div>
+    </div>
+
+    <!-- Speler 2 -->
+    <div style="text-align:center;">
+      <h2>Speler 2</h2>
+      <input id="invoerveld2" placeholder="Naam speler 2">
+      <input type="button" value="OK" onclick="doen2()">
+      <div id="uitvoerveld2"></div>
+    </div>
+  </div>
+
+
+
+
+
+
+<table id="bord">
+  <tbody>
+    <!-- 6 rijen x 7 kolommen -->
+    <tr>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+    </tr>
+    <tr>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+    </tr>
+    <tr>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+    </tr>
+    <tr>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+    </tr>
+    <tr>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+    </tr>
+    <tr>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+      <td onclick="gooiSteen(this.cellIndex)"></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+let currentPlayer = "red"; // afwisselende speler
+
+function gooiSteen(kolom) {
+    const bord = document.getElementById("bord");
+    const rows = bord.rows;
+    
+    // Loop van onder naar boven in de gekozen kolom
+    for (let i = rows.length - 1; i >= 0; i--) {
+        const cel = rows[i].cells[kolom];
+        if (cel.style.backgroundColor === "") { // lege cel gevonden
+            cel.style.backgroundColor = currentPlayer;
+            // Wissel speler
+            currentPlayer = currentPlayer === "red" ? "blue" : "red";
+            break; 
+        }
+    }
+}
+
+
+
+    function doen(){
+	var x = document.getElementById("invoerveld1").value; 
+	console.log(x);
+
+	var uitvoer = document.getElementById("uitvoerveld1");
+    uitvoer.innerHTML = "Hoi  " + x +  ", Jij bent Rood!" + "<br>Jij mag beginnen."; 
+
+    setTimeout(() => {
+        uitvoer.innerHTML = "Klaar?";
+    }, 2000);
+}   
+       
+
+
+
+    function doen2(){
+	var a = document.getElementById("invoerveld2").value;
+	console.log(a);
+	var uitvoer2 = document.getElementById("uitvoerveld2");
+    uitvoer2.innerHTML = "Hoi  " + a + ", Jij bent Blauw!" 
+
+    setTimeout(() => {
+        uitvoer2.innerHTML = "Laat het spel beginnen!";
+    }, 2000);
+}   
+    
+
+
+</script>
+
+
+
+
+
+
+
+
+    
